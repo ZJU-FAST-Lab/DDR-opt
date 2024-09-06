@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>SSD-opt</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/video_comparison.js"></script>
+
+
+    <script src="js/katex.min.js"></script>
+    <script src="js/katex-auto-render.min.js"></script>
+    <link rel="stylesheet" href="css/katex.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
+
+
+</head>
+
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                Universal Trajectory Optimization Framework for Differential Driven Robot Class
+                <!-- <small>
+                    RA-L 2023 (accepted)
+                </small> -->
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a>
+                            Mengke Zhang
+                        </a><sup>1, 2</sup>
+                    </li>
+                    <li>
+                        <a>
+                            Zhichao Han
+                        </a><sup>1, 2</sup>
+                    </li>
+                    <li>
+                        <a href="http://zju-fast.com/research-group/chao-xu/">
+                            Chao Xu
+                        </a><sup>1, 2</sup>
+                    </li>
+                    <li>
+                        <a href="http://zju-fast.com/fei-gao/">
+                            Fei Gao
+                        </a><sup>1, 2</sup>
+                    </li>
+                    <li>
+                        <a href="http://zju-fast.com/research-group/yanjun-cao/">
+                            Yanjun Cao
+                        </a><sup>1, 2</sup>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="http://www.cse.zju.edu.cn/">
+                            <sup>1</sup> ZJU-CSE
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://hzi.zju.edu.cn/">
+                            <sup>2</sup> HIZJU
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <!-- <a href="https://ieeexplore.ieee.org/document/10287548">
+                            <image src="img/coni_mpc_paper_image.jpg" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                        </a> -->
+                        <image src="img/comming.webp" height="60px">
+                            <h4><strong>Paper</strong></h4>
+                    </li>
+                    <li>
+                        <a href="https://github.com/ZJU-FAST-Lab/DDR-opt">
+                            <image src="img/github-mark.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                        </a>
+                    </li>
+                    <li>
+                        <!-- <a href="https://www.bilibili.com/video/BV1iX4y1s7e6">
+                            <image src="img/bilibili_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                        </a> -->                        
+                        <image src="img/comming.webp" height="60px">
+                            <h4><strong>Video</strong></h4>
+                    </li>
+                    <!-- <li>
+                        <a href="https://youtu.be/i1ZsvC7HDqU">
+                            <image src="img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                        </a>
+                    </li> -->
+
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <img src="img/head_figure.png" class="mx-auto d-block" width="80%" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    Various differential-driven (DD) robots, kinematics models and planning results. 
+                    (a) Two-wheeled differential-driven (SDD) robot. (b) Skid-steering (SKDD) robot. (c) Tracked (TDD) robot. 
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <img src="img/head_figure_trajectory2.png" class="mx-auto d-block" width="80%" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    The optimized trajectory and the simulated execution results for two types of robots in narrow environments.  
+                    The robots should map online to perceive the environment and replan to avoid obstacles. 
+                    To verify the performance of the planner, a specifically designed map requires the robot to execute rotations or reversals at both the start and end points.
+                    In the upper right corner, from left to right, snapshots showcase the motion and mapping of the TDD robot, which moves with lateral slip.
+                    In the lower left corner, from right to left, is the SDD robot, which does not exist lateral slip. 
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    Abstract
+                </h1>
+                <p class="text-justify">
+                    Differential-driven robots are widely used in various scenarios thanks to their straightforward principle, from household service robots to disaster response field robots.
+                    There are several different types of deriving mechanisms considering the real-world applications, including two-wheeled, four-wheeled skid-steering, tracked robots, etc. 
+                    The differences in the driving mechanism usually require specific kinematic modeling when precise controlling is desired. 
+                    Furthermore, the nonholonomic dynamics and possible lateral slip lead to different degrees of difficulty in getting feasible and high-quality trajectories.
+                    Therefore, a comprehensive trajectory optimization framework to compute trajectories efficiently for various kinds of differential-driven robots is highly desirable. 
+                    In this paper, we propose a universal trajectory optimization framework that can be applied to differential-driven robot class, enabling the generation of high-quality trajectories within a restricted computational timeframe. 
+                    We introduce a novel trajectory representation based on polynomial parameterization of motion states or their integrals, such as angular and linear velocities, that inherently matching robots' motion to the control principle for differential-driven robot class. 
+                    The trajectory optimization problem is formulated to minimize complexity while `prioritizing safety and operational efficiency.
+                    We then build a full-stack autonomous planning and control system to show the feasibility and robustness. 
+                    We conduct extensive simulations and real-world testing in crowded environments with three kinds of differential-driven robots to validate the effectiveness of our approach.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    Simulation results
+                </h1>
+                <div class="text-center">
+                    <img src="img/tracked_traj.png" class="mx-auto d-block" width="70%" />
+                </div>
+                <div style="width: 70%; margin-left: auto; margin-right: auto; font-size: 14px">
+                    Planning results without(a) and with(b) considering lateral slip.
+                    To better reflect the discrepancy between the two results, we locally enlarged the trajectory sections with large curvature.
+                </div>
+            <br>
+                <div class="text-center">
+                    <img src="img/comp_method.png" class="mx-auto d-block" width="70%" />
+                </div>
+                <div style="width: 70%; margin-left: auto; margin-right: auto; font-size: 14px">
+                    Visual comparison of different methods. Proposed method and TEB are set to allow move backward.  
+                    We use Jump Point Search (JPS) as initial value, Differential-flatness Based Method, Timed Elastic Band (TEB) as benchmark. 
+                </div>
+            <br>
+                <div class="text-center">
+                    <img src="img/patrol.png" class="mx-auto d-block" width="70%" />
+                </div>
+                <div style="width: 70%; margin-left: auto; margin-right: auto; font-size: 14px">
+                    Patrolling with DFB and Proposed methods, the next target is provided to the planner upon nearing the current target. 
+                    ① is the starting position, with the initial state directed towards the positive right-hand side. 
+                    We use the gradient color to show the angular velocity in ②-④. 
+                    The robot moves around the obstacle in ②. 
+                    In ③ and ④, a new target is provided to the planner, prompting the robot to turn towards the new target.
+                </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" onmouseout="simulation_stop()" onmouseover="simulation_start()">
+                <div style="width: 100%; position: relative;">
+                    <div id="simulation_demo"
+                        style="width: 100%; position: absolute; transition: opacity .2s ease-in-out; -moz-transition: opacity .2s ease-in-out; -webkit-transition: opacity .2s ease-in-out;">
+                        <!-- <video controls class="lazy" id="v0" width="100%" autoplay loop muted> -->
+                        <video controls class="lazy" id="v0" width="100%" loop muted>
+                            <source data-src="img/U5_all_x264.mp4" />
+                        </video>
+                    </div>
+                    <div class="text-center">
+                        <img src="img/replan.png" class="mx-auto d-block" width="80%" />
+                    </div>
+                    <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                        Simulation results for replanning. 
+                        We use 360° radar simulator to create maps during runtime. 
+                        The upper figure shows the simulation results of the U-shaped environment. The lower figure shows a specially designed environment containing many obstacles that may be sheltered. 
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function simulation_start() {
+                    document.getElementById('simulation_demo').style.opacity = "1";
+                }
+                function simulation_stop() {
+                    document.getElementById('simulation_demo').style.opacity = "0";
+                }
+                coni_stop()
+            </script>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    Experiments
+                </h1>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <h2>
+                    Two-wheel differential driven robot 
+                </h2>
+                <video controls class="lazy" id="v_fixed_point" style="display: block; margin: 0 auto;" width="60%"  loop muted>
+                    <source data-src="img/differential-driven.mp4" />
+                </video>
+                <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                    <a href="https://www.agilex.ai/chassis/2">TRACER MINI</a>
+                    is employed as our two-wheel differential driven robot platform, which is controlled through linear and angular velocity.
+                    Map is pre-built and <a href="https://www.nokov.com/">the motion capture system</a> is utilized for localization. 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2>Skid-steering robot</h2>
+                    <p class="text-justify">
+                        <a href="https://www.agilex.ai/chassis/2">SCOUT MINI</a>
+                        is employed as our skid-steering robot platform, which is controlled via linear and angular velocity.
+                        We randomly place obstacles and use fastlio for localization, simulating the real-world application. 
+                    </p>
+                </div>
+                <!-- <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                    <a href="https://www.agilex.ai/chassis/2">SCOUT MINI</a>
+                    is employed as our skid-steering robot platform, which is controlled via linear and angular velocity.
+                    We randomly place obstacles and use fastlio for localization, simulating the real-world application. 
+                </div> -->
+                <div class="col-md-4 col-md-offset-2">
+                    <video controls class="lazy" id="video1" style="display: block; margin: 0 auto;" width="100%"  loop muted>
+                        <source data-src="img/skid1.mp4" />
+                    </video>
+                    <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                        Online mapping and re-planning
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <video controls class="lazy" id="video2" style="display: block; margin: 0 auto;" width="100%"  loop muted>
+                        <source data-src="img/skid2.mp4" />
+                    </video>
+                    <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                        Update the known map. 
+                    </div>
+                    <br>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <video controls class="lazy" id="video1" style="display: block; margin: 0 auto;" width="100%"  loop muted>
+                        <source data-src="img/skid_batch_x264.mp4" />
+                    </video>
+                    <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                        All examples are Online mapping and re-planning
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2>Tracked robot</h2>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <video controls class="lazy" id="video2" style="display: block; margin: 0 auto;" width="60%"  loop muted>
+                        <source data-src="img/track1_x264.mp4" />
+                    </video>
+                </div>
+                <div class="col-md-4">
+                    <video controls class="lazy" id="video2" style="display: block; margin: 0 auto;" width="60%"  loop muted>
+                        <source data-src="img/track2_x264.mp4" />
+                    </video>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                        All examples are Online mapping and re-planning
+                    </div>
+                </div>
+            </div>
+
+            
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    Citation
+                </h1>
+                <textarea id="bibtex" class="form-control" readonly>
+@article{zhang2023coni,
+  title={CoNi-MPC: Cooperative Non-inertial Frame Based Model Predictive Control},
+  author={Zhang, Baozhe and Chen, Xinwei and Li, Zhehan and Beltrame, Giovanni and Xu, Chao and Gao, Fei and Cao, Yanjun},
+  journal={arXiv preprint arXiv:2306.11259},
+  year={2023}
+}
+</textarea>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    Acknowledgements
+                </h1>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    We would like to thank Chice Xuan and Zhimiao Yu for helping us building up the test vehicles for
+                    indoor and outdoor experiments. We also would like to thank Qi Liu, Zhenjun Ying, and Zheng Wang for
+                    their technical supports of the relative estimation device, <a
+                        href="https://fast-fire.github.io/CREPES/">CREPES</a>.
+                </p>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    The code of this work is inspired by the work of <a
+                        href="https://github.com/uzh-rpg/rpg_mpc">rpg_mpc</a>.
+                </p>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a
+                        href="https://dorverbin.github.io/refnerf">Ref-NeRF</a>.
+                </p>
+            </div>
+        </div> -->
+
+        <!-- contact -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <h1 style="font-size: 32px;">
+                        <!-- <strong>Contact us:</strong> -->
+                    </h1>
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <a href="http://zju-fast.com">
+                                <img src="img/Fastlab.png" height="65px">
+                            </a>
+                            <a href="http://hzi.zju.edu.cn/" style="display:block; margin-top: 25px;">
+                                <img src="img/Hizju.png" height="58px">
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="http://pages.fast-fire.space" class="text-center">
+                                        <img src="img/qrcode_page.png" height="125px">
+                                        <h4 style="margin-top: 2px;"><strong>Projects</strong></h4>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="https://u.wechat.com/EFFxPvWiRRmMD9T_LvDgm0k" class="text-center">
+                                        <img src="img/qrcode_weixin.png" height="125px">
+                                        <h4 style="margin-top: 2px;"><strong>WeChat</strong></h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-left">
+                                <strong style="font-size: 13px;">E-mail:</strong>
+                                <a href="mailto:yanjunhi@zju.edu.cn" style="font-size: 14px;">
+                                    yanjunhi@zju.edu.cn
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-md-5">
+                            <p class="text-left">
+                                <strong style="font-size: 13px;">Address:</strong>
+                                <a href="https://ditu.amap.com/place/B0G257WTA3" style="font-size: 14px;">
+                                    浙江省湖州市吴兴区西塞山路819号浙江大学湖州研究院B2幢
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                ]
+            }
+        );
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+
+            if ("IntersectionObserver" in window) {
+                var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
+                    entries.forEach(function (video) {
+                        if (video.isIntersecting) {
+                            for (var source in video.target.children) {
+                                var videoSource = video.target.children[source];
+                                if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                                    videoSource.src = videoSource.dataset.src;
+                                }
+                            }
+
+                            video.target.load();
+                            video.target.classList.remove("lazy");
+                            lazyVideoObserver.unobserve(video.target);
+                        }
+                    });
+                });
+
+                lazyVideos.forEach(function (lazyVideo) {
+                    lazyVideoObserver.observe(lazyVideo);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
