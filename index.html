@@ -38,7 +38,7 @@
     <div class="container" id="main">
         <div class="row">
             <h2 class="col-md-12 text-center">
-                Universal Trajectory Optimization Framework for Differential Driven Robot Class
+                Universal Trajectory Optimization Framework for Differential Drive Robot Class
                 <!-- <small>
                     RA-L 2023 (accepted)
                 </small> -->
@@ -133,8 +133,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <p class="text-justify">
-                    Various differential-driven (DD) robots, kinematics models and planning results. 
-                    (a) Two-wheeled differential-driven (SDD) robot. (b) Skid-steering (SKDD) robot. (c) Tracked (TDD) robot. 
+                    Various differential-drive (DD) robots, kinematics models and planning results. 
+                    (a) Two-wheeled differential-drive (SDD) robot. (b) Skid-steering (SKDD) robot. (c) Tracked (TDD) robot. 
                 </p>
             </div>
         </div>
@@ -161,16 +161,16 @@
                     Abstract
                 </h1>
                 <p class="text-justify">
-                    Differential-driven robots are widely used in various scenarios thanks to their straightforward principle, from household service robots to disaster response field robots.
-                    There are several different types of deriving mechanisms considering the real-world applications, including two-wheeled, four-wheeled skid-steering, tracked robots, etc. 
-                    The differences in the driving mechanism usually require specific kinematic modeling when precise controlling is desired. 
+                    Differential drive robots are widely used in various scenarios thanks to their straightforward principle, from household service robots to disaster response field robots.
+                    There are several types of driving mechanisms for real-world applications, including two-wheeled, four-wheeled skid-steering, tracked robots, and so on. 
+                    The differences in the driving mechanisms usually require specific kinematic modeling when precise control is desired. 
                     Furthermore, the nonholonomic dynamics and possible lateral slip lead to different degrees of difficulty in getting feasible and high-quality trajectories.
-                    Therefore, a comprehensive trajectory optimization framework to compute trajectories efficiently for various kinds of differential-driven robots is highly desirable. 
-                    In this paper, we propose a universal trajectory optimization framework that can be applied to differential-driven robot class, enabling the generation of high-quality trajectories within a restricted computational timeframe. 
-                    We introduce a novel trajectory representation based on polynomial parameterization of motion states or their integrals, such as angular and linear velocities, that inherently matching robots' motion to the control principle for differential-driven robot class. 
-                    The trajectory optimization problem is formulated to minimize complexity while `prioritizing safety and operational efficiency.
-                    We then build a full-stack autonomous planning and control system to show the feasibility and robustness. 
-                    We conduct extensive simulations and real-world testing in crowded environments with three kinds of differential-driven robots to validate the effectiveness of our approach.
+                    Therefore, a comprehensive trajectory optimization framework to compute trajectories efficiently for various kinds of differential drive robots is highly desirable.  
+                    In this paper, we propose a universal trajectory optimization framework that can be applied to differential drive robots, enabling the generation of high-quality trajectories within a restricted computational timeframe. 
+                    We introduce a novel trajectory representation based on polynomial parameterization of motion states or their integrals, such as angular and linear velocities, which inherently matches the robots' motion to the control principle. 
+                    The trajectory optimization problem is formulated to minimize complexity while prioritizing safety and operational efficiency.
+                    We then build a full-stack autonomous planning and control system to demonstrate its feasibility and robustness. 
+                    We conduct extensive simulations and real-world testing in crowded environments with three kinds of differential drive robots to validate the effectiveness of our approach.
                 </p>
             </div>
         </div>
@@ -246,14 +246,14 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <h2>
-                    Two-wheel differential driven robot 
+                    Two-wheel differential drive robot 
                 </h2>
                 <video controls class="lazy" id="v_fixed_point" style="display: block; margin: 0 auto;" width="60%"  loop muted>
                     <source data-src="img/differential-driven.mp4" />
                 </video>
                 <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
                     <a href="https://www.agilex.ai/chassis/2">TRACER MINI</a>
-                    is employed as our two-wheel differential driven robot platform, which is controlled through linear and angular velocity.
+                    is employed as our two-wheel differential drive robot platform, which is controlled through linear and angular velocity.
                     Map is pre-built and <a href="https://www.nokov.com/">the motion capture system</a> is utilized for localization. 
                 </div>
             </div>
