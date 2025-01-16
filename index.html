@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>SSD-opt</title>
+    <title>DDR-opt</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
     <meta name="description" content="">
@@ -117,7 +117,7 @@
             <div class="col-md-4 col-md-offset-4 text-center">
                 <ul class="nav nav-pills nav-justified">
                     <li>
-                        <a href="https://arxiv.org/abs/2409.07924">
+                        <a href="https://arxiv.org/abs/2409.07924v2">
                             <image src="img/paper.png" height="60px">
                                 <h4><strong>Paper</strong></h4>
                         </a>
@@ -131,19 +131,19 @@
                         </a>
                     </li>
                     <li>
-                        <!-- <a href="https://www.bilibili.com/video/BV1iX4y1s7e6">
-                            <image src="img/bilibili_icon.png" height="60px">
+                        <a href="https://www.bilibili.com/video/BV1gJxveMEm8">
+                            <image src="img/bilibili_icon.png" height="50px">
                                 <h4><strong>Video</strong></h4>
-                        </a> -->                        
-                        <image src="img/comming.webp" height="60px">
-                            <h4><strong>Video</strong></h4>
+                        </a>
+                        <!-- <image src="img/comming.webp" height="60px">
+                            <h4><strong>Video</strong></h4> -->
                     </li>
-                    <!-- <li>
-                        <a href="https://youtu.be/i1ZsvC7HDqU">
+                    <li>
+                        <a href="https://youtu.be/fo64QufedPo">
                             <image src="img/youtube_icon.png" height="60px">
                                 <h4><strong>Video</strong></h4>
                         </a>
-                    </li> -->
+                    </li>
 
                 </ul>
             </div>
@@ -187,17 +187,33 @@
                 </h1>
                 <p class="text-justify">
                     Differential drive robots are widely used in various scenarios thanks to their straightforward principle, from household service robots to disaster response field robots.
-                    There are several types of driving mechanisms for real-world applications, including two-wheeled, four-wheeled skid-steering, tracked robots, and so on. 
-                    The differences in the driving mechanisms usually require specific kinematic modeling when precise control is desired. 
-                    Furthermore, the nonholonomic dynamics and possible lateral slip lead to different degrees of difficulty in getting feasible and high-quality trajectories.
-                    Therefore, a comprehensive trajectory optimization framework to compute trajectories efficiently for various kinds of differential drive robots is highly desirable.  
-                    In this paper, we propose a universal trajectory optimization framework that can be applied to differential drive robots, enabling the generation of high-quality trajectories within a restricted computational timeframe. 
+                    The nonholonomic dynamics and possible lateral slip of these robots lead to difficulty in getting feasible and high-quality trajectories. 
+                    Although there are several types of driving mechanisms for real-world applications, they all share a similar driving principle, which involves controlling the relative motion of independently actuated tracks or wheels to achieve both linear and angular movement.
+                    Therefore, a comprehensive trajectory optimization to compute trajectories efficiently for various kinds of differential drive robots is highly desirable.
+                    In this paper, we propose a universal trajectory optimization framework, enabling the generation of high-quality trajectories within a restricted computational timeframe for these robots. 
                     We introduce a novel trajectory representation based on polynomial parameterization of motion states or their integrals, such as angular and linear velocities, which inherently matches the robots' motion to the control principle. 
-                    The trajectory optimization problem is formulated to minimize complexity while prioritizing safety and operational efficiency.
+                    The trajectory optimization problem is formulated to minimize computation complexity while prioritizing safety and operational efficiency.
                     We then build a full-stack autonomous planning and control system to demonstrate its feasibility and robustness. 
                     We conduct extensive simulations and real-world testing in crowded environments with three kinds of differential drive robots to validate the effectiveness of our approach.
                 </p>
             </div>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    System
+                </h1>
+                <div class="text-center">
+                    <img src="img/Block_Diagram4.png" class="mx-auto d-block" width="90%" />
+                </div>
+                <div style="width: 90%; margin-left: auto; margin-right: auto; font-size: 14px">
+                    Overview of the a example navigation system with our planner. 
+                    In perception, lidar is used for Lidar-Inertial Odometry (LIO) and mapping.
+                    With the result of odometry and ESDF map, our planner uses Jump Point Search (JPS) to get the global path (brown) and to generate the initial MS trajectory (purple). 
+                    Trajectory pre-processing (blue) ensures close alignment of the trajectory with the global path. 
+                    The Augmented Lagrangian Method (ALM) iteratively optimizes the trajectory to satisfy constraints (yellow) and reach the desired final positions (red).
+                    The system uses pre-integration to get the reference trajectory and selects appropriate NMPC controller depending on the driving method.
+                </div>
+            </div>     
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -208,27 +224,30 @@
                     <img src="img/tracked_traj.png" class="mx-auto d-block" width="70%" />
                 </div>
                 <div style="width: 70%; margin-left: auto; margin-right: auto; font-size: 14px">
-                    Planning results without(a) and with(b) considering lateral slip.
-                    To better reflect the discrepancy between the two results, we locally enlarged the trajectory sections with large curvature.
+                    Planning results of TEB (a), and the proposed method without (b) and with (c) lateral slip of $x_{Iv}$, when lateral slip cannot be ignored. 
+                    We calculate the average tracking error and maximum tracking error of the controller. 
+                    By modeling lateral slip into the MS trajectory, the controller achieves better performance in tracking the proposed trajectory.
                 </div>
             <br>
                 <div class="text-center">
                     <img src="img/comp_method.png" class="mx-auto d-block" width="70%" />
                 </div>
                 <div style="width: 70%; margin-left: auto; margin-right: auto; font-size: 14px">
-                    Visual comparison of different methods. Proposed method and TEB are set to allow move backward.  
-                    We use Jump Point Search (JPS) as initial value, Differential-flatness Based Method, Timed Elastic Band (TEB) as benchmark. 
+                    Visual comparison of different methods. Proposed method and TEB are set to allow moving backward.
+                    To better illustrate the details, we zoom in three areas(\textcircled{1} to \textcircled{3}) with distinct differences.
+                    Specifically, in region \textcircled{2}, we show the via-points of TEB.
                 </div>
             <br>
                 <div class="text-center">
                     <img src="img/patrol.png" class="mx-auto d-block" width="70%" />
                 </div>
                 <div style="width: 70%; margin-left: auto; margin-right: auto; font-size: 14px">
-                    Patrolling with DFB and Proposed methods, the next target is provided to the planner upon nearing the current target. 
-                    ① is the starting position, with the initial state directed towards the positive right-hand side. 
-                    We use the gradient color to show the angular velocity in ②-④. 
-                    The robot moves around the obstacle in ②. 
-                    In ③ and ④, a new target is provided to the planner, prompting the robot to turn towards the new target.
+                    Patrolling with DF and Proposed methods, the next target is provided to the planner upon nearing the current target.
+                    We zoom in four position(\textcircled{1} -- \textcircled{4}) to show the smoothness and efficiency difference.
+                    \textcircled{1} is the starting position, with the initial state directed towards the positive right-hand side. 
+                    We use the gradient color to show the angular velocity in \textcircled{2}-\textcircled{4}. 
+                    The robot moves around the obstacle in \textcircled{2}. 
+                    In \textcircled{3} and \textcircled{4}, a new target is provided to the planner, prompting the robot to turn towards the new target.
                 </div>
         </div>
         
