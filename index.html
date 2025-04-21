@@ -285,11 +285,10 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2" onmouseout="simulation_stop()" onmouseover="simulation_start()">
+            <div class="col-md-8 col-md-offset-2" onmouseout="simulation_stop1()" onmouseover="simulation_start1()">
                 <div style="width: 100%; position: relative;">
-                    <div id="simulation_demo"
+                    <div id="simulation_demo1"
                         style="width: 100%; position: absolute; transition: opacity .2s ease-in-out; -moz-transition: opacity .2s ease-in-out; -webkit-transition: opacity .2s ease-in-out;">
-                        <!-- <video controls class="lazy" id="v0" width="100%" autoplay loop muted> -->
                         <video controls class="lazy" id="v0" width="100%" loop muted>
                             <source data-src="img/non_particle.mp4" />
                         </video>
@@ -306,13 +305,17 @@
                 </div>
             </div>
             <script type="text/javascript">
-                function simulation_start() {
-                    document.getElementById('simulation_demo').style.opacity = "1";
+                function simulation_start1() {
+                    document.getElementById('simulation_demo1').style.opacity = "1";
                 }
-                function simulation_stop() {
-                    document.getElementById('simulation_demo').style.opacity = "0";
+                function simulation_stop1() {
+                    document.getElementById('simulation_demo1').style.opacity = "0";
                 }
-                coni_stop()
+                // 初始隐藏
+                window.addEventListener('DOMContentLoaded', function(){
+                    document.getElementById('simulation_demo1').style.opacity = "0";
+                });
+                coni_stop();
             </script>
         </div>
 
