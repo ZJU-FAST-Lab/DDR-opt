@@ -48,12 +48,12 @@
             <div class="col-md-12 text-center">
                 <ul class="list-inline">
                     <li>
-                        <a>
+                        <a href="http://zju-fast.com/mengke-zhang/">
                             Mengke Zhang
                         </a><sup>1, 2</sup>
                     </li>
                     <li>
-                        <a>
+                        <a href="http://zju-fast.com/nanhe-chen/">
                             Nanhe Chen
                         </a><sup>1, 2</sup>
                     </li>
@@ -68,12 +68,12 @@
                         </a><sup>3</sup>
                     </li>
                     <li>
-                        <a>
+                        <a href="http://zju-fast.com/zhichao-han/">
                             Zhichao Han
                         </a><sup>1, 2</sup>
                     </li>
                     <li>
-                        <a>
+                        <a href="http://zju-fast.com/qiuyu-ren/">
                             Qiuyu Ren
                         </a><sup>1, 2</sup>
                     </li>
@@ -117,12 +117,16 @@
             <div class="col-md-4 col-md-offset-4 text-center">
                 <ul class="nav nav-pills nav-justified">
                     <li>
-                        <a href="https://arxiv.org/abs/2409.07924v2">
-                            <image src="img/paper.png" height="60px">
-                                <h4><strong>Paper</strong></h4>
+                        <a href="https://ieeexplore.ieee.org/document/10924228">
+                            <image src="img/IEEEpaper.png" height="60px">
+                                <h4><strong>IEEE</strong></h4>
                         </a>
-                        <!-- <image src="img/comming.webp" height="60px">
-                            <h4><strong>Paper</strong></h4> -->
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2409.07924">
+                            <image src="img/paper.png" height="60px">
+                                <h4><strong>Arxiv</strong></h4>
+                        </a>
                     </li>
                     <li>
                         <a href="https://github.com/ZJU-FAST-Lab/DDR-opt">
@@ -135,8 +139,6 @@
                             <image src="img/bilibili_icon.png" height="50px">
                                 <h4><strong>Video</strong></h4>
                         </a>
-                        <!-- <image src="img/comming.webp" height="60px">
-                            <h4><strong>Video</strong></h4> -->
                     </li>
                     <li>
                         <a href="https://youtu.be/fo64QufedPo">
@@ -281,6 +283,39 @@
                 coni_stop()
             </script>
         </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" onmouseout="simulation_stop()" onmouseover="simulation_start()">
+                <div style="width: 100%; position: relative;">
+                    <div id="simulation_demo"
+                        style="width: 100%; position: absolute; transition: opacity .2s ease-in-out; -moz-transition: opacity .2s ease-in-out; -webkit-transition: opacity .2s ease-in-out;">
+                        <!-- <video controls class="lazy" id="v0" width="100%" autoplay loop muted> -->
+                        <video controls class="lazy" id="v0" width="100%" loop muted>
+                            <source data-src="img/non_particle.mp4" />
+                        </video>
+                    </div>
+                    <div class="text-center">
+                        <img src="img/non_particle.png" class="mx-auto d-block" width="80%" />
+                    </div>
+                    <div style="width: 80%; margin-left: auto; margin-right: auto; font-size: 14px">
+                        Trajectory optimization considering the robot's shape. 
+                        The robot is X-shaped designed, with selected checkpoints marked on it shown in the bottom right. 
+                        Circles centered on these checkpoints are used to enclose the robot's outline. 
+                        Two parts of the trajectory(\textcircled{1} and \textcircled{2}) are zoomed in to illustrate the trajectory envelope in the bottom left,  showing how the optimized trajectory considers the robot shapes.                        
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function simulation_start() {
+                    document.getElementById('simulation_demo').style.opacity = "1";
+                }
+                function simulation_stop() {
+                    document.getElementById('simulation_demo').style.opacity = "0";
+                }
+                coni_stop()
+            </script>
+        </div>
+
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
