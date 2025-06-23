@@ -23,7 +23,7 @@
   <!-- <arg name="if_perspective_" value="false"/> -->
 
   <!-- Detection range -->
-  <arg name="detection_range_" value="3.0"/>
+  <arg name="detection_range_" value="10.0"/>
   <!-- <arg name="detection_range_" value="7.0"/> -->
 
   <!-- Whether the robot is allowed to move -->
@@ -156,6 +156,25 @@
     <param name="Png/y_lower" value="-5.0"/>
   </node>
 
+  <!-- 不用仿真雷达了 -->
+    <!-- <group if="$(arg if_perspective_)">
+    <node pkg="laser_simulator" type="laser_sim_node" name="laser_simulator" output="screen">
+      <param name="if_perspective" value="$(arg if_perspective_)"/>
+      <param name="pc_resolution" value="$(arg gridmap_interval_)"/>
+      <param name="sensing_horizon" value="$(arg detection_range_)"/>
+      <rosparam file="$(find laser_simulator)/config/perspective_laser.yaml" command="load" />
+    </node>
+  </group>
+  <group unless="$(arg if_perspective_)">
+    <node pkg="laser_simulator" type="laser_sim_node" name="laser_simulator" output="screen">
+      <param name="if_perspective" value="$(arg if_perspective_)"/>
+      <param name="pc_resolution" value="$(arg gridmap_interval_)"/>
+      <param name="hrz_limited" value="$(arg hrz_limited_)"/>
+      <param name="hrz_laser_range_dgr" value="$(arg hrz_laser_range_dgr_)"/>
+      <rosparam file="$(find laser_simulator)/config/normal_laser.yaml" command="load" />
+    </node>
+  </group> -->
+
   <!-- ekf对于icr的估计，必须有，只用外部输入odom，可能R需要调参。 -->
   <node name="icrekf" pkg="icrekf" type="icrekf" output="screen">
     <param name="Pose_sub_Reduce_frequency_" value="0"/>
@@ -186,6 +205,11 @@
     <remap from="Simple_EKF_ICR" to="/ICREKF/Simple_EKF_ICR"/>
   </node>
 
+  <!-- 发布真机速度 -->
+  <node name="to_real_cmd" pkg="to_real_cmd" type="real_cmd"/>
+
+  <!-- 发布world到map的静态tf -->
+  <node name="world_to_map" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 world map 100"/>
 
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find plan_manager)/rviz/planner_sim.rviz" output="log"/>
