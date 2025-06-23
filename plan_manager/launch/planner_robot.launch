@@ -23,7 +23,7 @@
   <!-- <arg name="if_perspective_" value="false"/> -->
 
   <!-- Detection range -->
-  <arg name="detection_range_" value="27.0"/>
+  <arg name="detection_range_" value="3.0"/>
   <!-- <arg name="detection_range_" value="7.0"/> -->
 
   <!-- Whether the robot is allowed to move -->
@@ -196,7 +196,6 @@
     <param name="yl_standard" value="$(arg ICR_yl_)"/>
     <param name="xv_standard" value="$(arg ICR_xv_)"/>
 
-    <remap from="ref_pose" to="/simulation/SimulatedCarState"/>
     <remap from="odom" to="/simulation/PoseOdomPub"/>
     <remap from="control" to="/simulation/ControlPub"/>
     <remap from="EKF_XYTheta" to="/ICREKF/EKF_XYTheta"/>
